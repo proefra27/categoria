@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const categoriasController = require('../controllers/categorias-controller');
-const categoriasControllerApi = require('../controllers/categorias-controller.api');
+const categoriasControllerApi = require('../controllers/categorias-controller-api');
 
 //Trabajo interno
 router.get('/', categoriasController.listarCategorias);

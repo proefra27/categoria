@@ -5,7 +5,7 @@ const categoriasController = {};
 
 categoriasController.listarCategorias = async (req, res) => {
   try {
-    const categorias = await Categoria.findAll();
+    const categorias = await Categoria.getAll();
     res.render('categorias/listar', { categorias });
   } catch (error) {
     console.log(error);
