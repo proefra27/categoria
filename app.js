@@ -23,5 +23,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 const categoriasRouter = require('./src/routes/categoriasRoutes');
 app.use('/categorias', categoriasRouter);
 
+app.get('/',(req,res)=>{
+    res.render('index')
+})
+
 // Inicio del servidor
 app.listen(puerto, () => console.log('Servidor iniciado en puerto 3000'));
