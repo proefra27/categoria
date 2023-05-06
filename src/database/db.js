@@ -5,7 +5,8 @@ const conexion = mysql.createConnection({
   user: process.env.MYSQLUSER || 'root',
   password: process.env.MYSQLPASSWORD || '',
   database: process.env.MYSQLDATABASE || 'siveo',
-  port:process.env.MYSQLPORT
+  port:process.env.MYSQLPORT,
+  insecureAuth:true
 });
 
 const getConexion=()=>{
