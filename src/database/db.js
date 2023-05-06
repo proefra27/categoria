@@ -1,10 +1,11 @@
 const mysql = require('promise-mysql');
 
 const conexion = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'siveo'
+  host: process.env.MYSQLHOST || 'localhost',
+  user: process.env.MYSQLUSER || 'root',
+  password: process.env.MYSQLPASSWORD || '',
+  database: process.env.MYSQLDATABASE || 'siveo',
+  port:process.env.MYSQLPORT
 });
 
 const getConexion=()=>{
