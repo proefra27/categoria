@@ -5,8 +5,8 @@ const conexion = createPool({
   user: process.env.MYSQLUSER || 'root',
   password: process.env.MYSQLPASSWORD || '',
   database: process.env.MYSQLDATABASE || 'siveo',
-  port:process.env.MYSQLPORT,
-  insecureAuth:true
+  port:process.env.MYSQLPORT//,
+  //insecureAuth:true
 });
 
 const getConexion=()=>{
