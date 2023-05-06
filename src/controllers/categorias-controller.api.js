@@ -1,4 +1,4 @@
-const db = require('../database/db');
+const { getConexion } = require('../database/db');
 
 
 const categoriasAPI = {};
@@ -6,9 +6,9 @@ const categoriasAPI = {};
 // GET all categories
 categoriasAPI.getCategorias = async (req, res, next) => {
   try {
-    const conexion = await db.getConexion();
+    const conexion = await getConexion();
     const categorias = await conexion.query('SELECT * FROM categoria');
-    res.json(categorias);
+    res.json(categorias[0]);
   } catch (error) {
     next(error);
   }
