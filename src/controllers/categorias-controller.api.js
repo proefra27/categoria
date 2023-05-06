@@ -33,9 +33,9 @@ categoriasAPI.getCategoria =  async (req, res, next) => {
 categoriasAPI.addCategoria = async (req, res, next) => {
   try {
     const { descripcion, observaciones } = req.body;
-    const conexion = await db.getConexion();
+    const conexion = await getConexion();
     const result = await conexion.query('INSERT INTO categoria (descripcion, observaciones) VALUES (?, ?)', [descripcion, observaciones]);
-    const categoria = await conexion.query('SELECT * FROM categoria WHERE id = ?', [result.insertId]);
+    const categoria = await conexion.query('SELECT * FROM categoria WHERE id = ?', [result[0].insertId]);
     res.status(201).json(categoria[0]);
   } catch (error) {
     next(error);
@@ -63,7 +63,9 @@ categoriasAPI.updateCategoria =  async (req, res, next) => {
 categoriasAPI.deleteCategoria =  async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = await db.query('DELETE FROM categorias WHERE id = ?', [id]);
+    const conexion = await getConexion();
+    const result = await conexion.query('DELETE FROM categoria WHERE id = ?', [id]);
+    
     if (result.affectedRows === 0) {
       res.status(404).json({ mensaje: 'Categoria no encontrada' });
     } else {
