@@ -3,7 +3,7 @@ const { getConexion } = require('../database/db');
 
 const categoriasAPI = {};
 
-// GET all categories
+// GET todas las categorias
 categoriasAPI.getCategorias = async (req, res, next) => {
   try {
     const conexion = await getConexion();
@@ -13,7 +13,8 @@ categoriasAPI.getCategorias = async (req, res, next) => {
     next(error);
   }
 }
-// GET a single category by id
+
+// GET una categoria por id
 categoriasAPI.getCategoria =  async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -29,7 +30,7 @@ categoriasAPI.getCategoria =  async (req, res, next) => {
   }
 }
 
-// POST a new category
+// POST de una nueva categoria
 categoriasAPI.addCategoria = async (req, res, next) => {
   try {
     const { descripcion, observaciones } = req.body;
@@ -60,17 +61,17 @@ categoriasAPI.updateCategoria =  async (req, res, next) => {
   }
 };
 
-// DELETE a category by id
+// DELETE una categoria por id
 categoriasAPI.deleteCategoria =  async (req, res, next) => {
   try {
     const { id } = req.params;
     const conexion = await getConexion();
     const result = await conexion.query('DELETE FROM categoria WHERE id = ?', [id]);
-    
-    if (result.affectedRows === 0) {
+    console.log(result)
+    if (result[0].affectedRows === 0) {
       res.status(404).json({ mensaje: 'Categoria no encontrada' });
     } else {
-      res.status(204).send();
+      res.status(201).json({ mensaje: 'Categoria eliminada' });
     }
   } catch (error) {
     next(error);

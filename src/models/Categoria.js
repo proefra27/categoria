@@ -1,4 +1,4 @@
-const db = require('../database/db');
+const { getConexion } = require('../database/db');
 
 class Categoria {
   constructor({ id, descripcion, observaciones }) {
@@ -8,9 +8,9 @@ class Categoria {
   }
 
   static async getAll() {
-    const conn = await db.getConnection();
-    const result = await conn.query('SELECT * FROM categorias');
-    conn.release();
+    const conn = await getConexion();
+    const result = await conn.query('SELECT * FROM categoria');
+    conn.end();
     return result;
   }
 

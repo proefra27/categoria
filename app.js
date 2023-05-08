@@ -4,6 +4,8 @@ const path = require('path');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const puerto = process.env.PORT || 3000;
+const categoriasRouter = require('./src/routes/categorias-routes');
+
 // Configuración de Handlebars
 
 app.set('view engine', 'hbs');
@@ -20,7 +22,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Rutas
-const categoriasRouter = require('./src/routes/categoriasRoutes');
 app.use('/categorias', categoriasRouter);
 
 app.get('/',(req,res)=>{
